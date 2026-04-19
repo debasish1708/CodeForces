@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class BNetWorkTopology {
+public class BNetWorkTopology_292B {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
