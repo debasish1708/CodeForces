@@ -1,7 +1,11 @@
-import java.io.*;
-import java.util.*;
+package BitMasks;
 
-public class NewYearsEve_912B {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class PetrAndCombination_1097B {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -80,24 +84,26 @@ public class NewYearsEve_912B {
 
     public static void main(String[] args) throws Exception {
         FastReader sc = new FastReader();
-        long answer = 0;
-        long n = sc.nextLong();
-        long k = sc.nextLong();
-        if(k==1){
-            System.out.println(n);
-            return;
-        }
- 
-        long temp = n;
-        int i=0;
-        while(temp>0){
-            if((temp & 1) == 0){
-                answer |= (1L<<i);
+        int n = sc.nextInt();
+        int[] arr = sc.nextIntArray(n);
+        
+        for(int mask=0;mask<(1<<n);mask++){
+            int sum=0;
+            for(int i=0;i<n;i++){
+                int bitMask = (mask & (1<<i));
+                if(bitMask == 0){
+                    sum += arr[i];
+                } else {
+                    sum -= arr[i];
+                }
             }
-            temp >>= 1;
-            i++;
+
+            if(sum%360==0){
+                System.out.println("YES");
+                return;
+            }
         }
-        long ans = n^answer;
-        System.out.println(ans);
+        System.out.println("NO");
+
     }
 }
